@@ -1,3 +1,4 @@
 # avoid all virtualenv files
 virtualenv_overhead/**
+*.pyc
 .Python
