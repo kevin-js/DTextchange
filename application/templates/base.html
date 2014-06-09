@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	{% if title %}
+	<title>DTextchange - {{title}}</title>
+	{% else %}
+	<title>DTextchange</title>
+	{% endif %}
+	<link rel="stylesheet" type="text/css" href="http://bootstrap.hackdartmouth.org/assets/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/design.css') }}" />
+</head>
+<body>
+	<div class="container">
+		<h1><a href="/index">DTextchange</a></h1>
+		<hr />
+		<div class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<div class="navbar-inner">
+					<ul class="nav navbar-nav">
+						<li><a href="/index">Home</a></li>
+						<li><a href="/contact">Contact Us</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><span class="tag">Login: {{login_form.username}}</span></li>
+						<li><span class="tag">Password: {{login_form.password}}</span></li>
+						<li>{{login_form.remember_me}}<p id="remember_me">Remember Me</p></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% block content %}
+	{% endblock %}
+	</div>
+</body>
+</html>

@@ -1,5 +1,3 @@
 # avoid all virtualenv files
-bin/**
-include/**
-lib/**
+virtualenv_overhead/**
 .Python
