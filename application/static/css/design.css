@@ -1,8 +1,19 @@
-#remember_me {
+#remember-me {
 	font-size: 10px;
 }
 
-.tag {
+#titleblock {
+	font-size: 3em;
+	color: #ffffff;
+	padding-left: 20px;
+	padding-top: 150px;
+}
+
+#header-section {
+	background-image: url('../img/textbooks.jpg');
+	height: 240px;
+}
+
+.login-info {
 	font-size: 12px;
-	font-family: Arial, Helvetica, Sans-Serif;
 }

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="hero-unit">
-	<div class="span-8">{{query_engine.query}}</div>
+	<form class="span-8">{{query_engine.query(placeholder="What are you looking for? e.g. ECON 21 textbook, \'Intermediate Microeconomics\', required readings for Professor X")}}</form>
+</div>
+
+<!-- TODO: manage user preferences: suggest certain textbooks based on prior searches -->
+<div class="container">
 </div>
 {% endblock %}
