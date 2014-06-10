@@ -13,19 +13,19 @@
 </head>
 <body>
 	<div id="header-section">
-		<div class="navbar navbar-default" role="navigation">
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container nav-collapse">
 				<div class="navbar-inner">	
-					<ul class="nav navbar-nav">
+					<ul class="nav navbar-nav navbar-left">
 						<li><a href="/index">Home</a></li>
 						<li><a href="/signup">Register</a></li>
 						<li><a href="/contact">Contact Us</a></li>
 						<li><a href="http://coursetown.hacktown.cs.dartmouth.edu/">Course Picker</a></li>
 					</ul>
-					<ul class="nav navbar-right">
-						<li><span class="login-info">{{login_form.username(placeholder="username")}}</span></li>
-						<li><span class="login-info">{{login_form.password(placeholder="password")}}</span></li>
-						<li><span class="login-info">{{login_form.remember_me}}<p id="remember-me">Remember Me</p></span></li>
+					<ul class="nav navbar-nav navbar-right">
+						<li><span class="login-info">{{login_form.username(placeholder="username", style="margin-top: 10px")}}</span></li>
+						<li><span class="login-info">{{login_form.password(placeholder="password", style="margin-left: 5px; margin-top: 10px")}}</span></li>
+						<li><span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 15px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span></li>
 					</ul>
 				</div>
 			</div>

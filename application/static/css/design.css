@@ -3,10 +3,11 @@
 }
 
 #titleblock {
+	position: absolute;
 	font-size: 3em;
 	color: #ffffff;
 	padding-left: 20px;
-	padding-top: 150px;
+	padding-top: 50px;
 }
 
 #header-section {

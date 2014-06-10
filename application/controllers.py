@@ -15,7 +15,7 @@ def signup():
 	signup_form = forms.SignupForm()
 	if login_form.validate_on_submit():
 		redirect(url_for('index'))
-	return render_template('signup.html', login_form = login_form, signup_form = signup_form)
+	return render_template('signup.html', title = 'Sign Up', login_form = login_form, signup_form = signup_form)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
