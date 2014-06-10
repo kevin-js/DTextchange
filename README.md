@@ -1,4 +1,4 @@
-DTextchange -- About Us
+<h1>DTextchange -- About Us</h1>
 
 **TODO**
 Recently converted to a Flask application; more to come
