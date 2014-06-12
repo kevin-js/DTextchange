@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
+	<meta name="description" content="textbook exchange" />
+	<meta name="keywords" content="textbook, exchange, Dartmouth" />
+	<meta name="author" content="Kevin Guh, Dartmouth Hackers Club" />
 	{% if title %}
 	<title>DTextchange - {{title}}</title>
 	{% else %}
@@ -33,9 +36,14 @@
 		<h1><a href="/index" id="titleblock">DTextchange</a></h1>
 	</div>
 	<hr />
-	<div class="container">
-	{% block content %}
-	{% endblock %}
+	<div class="container col-xs-12">
+		<div class="col-xs-9 col-sm-9">
+			{% block content %}
+			{% endblock content %}
+		</div>
+		<div class="col-xs-3 col-sm-3">
+			{% include 'live_feed.html' %}
+		</div>
 	</div>
 </body>
 </html>

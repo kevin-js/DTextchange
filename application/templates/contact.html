@@ -3,14 +3,14 @@
 <div class="container">
 	<div class="col-sm-6">
 		<div class="hero-unit">
-			<p><h1>Contact Us</h1>Questions? Comments? Leave us a note here. Or alternatively, shoot us a message at: <br /><a href="mailto:dtextchange@gmail.com">dtextchange@gmail.com</a></p>
-			<form name="contact-form">
+			<p><h1>Contact Us</h1>Questions? Comments? Leave us a note here. Or alternatively, shoot us a message at: <br /><a href="mailto:dtextchange@gmail.com">dartmouthtextchange@gmail.com</a></p>
+			<form action="/contact" name="contact-form">
 				<div class="row-fluid">
-					<div class="col-sm-6" style="margin-bottom: 5px"><div class="form-group">{{contact_form.name(placeholder="Name")}}</div></div>
-					<div class="col-sm-6" style="margin-bottom: 5px"><div class="form-group">{{contact_form.subject(placeholder="Subject")}}</div></div>
+					<div class="col-sm-8" style="margin-bottom: 5px"><div class="form-group">{{contact_form.name(placeholder="Name")}}</div></div>
+					<div class="col-sm-8" style="margin-bottom: 5px"><div class="form-group">{{contact_form.subject(placeholder="Subject")}}</div></div>
 				</div>
 				<div class="row">
-					<div class="col-sm-10" style="margin-bottom: 10px"><div class="form-group">{{contact_form.message(placeholder="Message")}}</div></div>
+					<div class="col-sm-12" style="margin-bottom: 10px"><div class="form-group">{{contact_form.message(placeholder="Message")}}</div></div>
 					<div><div class="form-group">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div></div>
 				</div>
 			</form>

@@ -10,3 +10,13 @@ Recently converted to a Flask application; more to come
   <li>go to localhost:5000/ via http in browser</li>
   <li>voila</li>
 </ol>
+
+<ul>
+	<h1>TODO:</h1>
+	<li>Get message script for contact page working</li>
+	<li>Create splash homepage, move register and login there</li>
+	<li>Get MongoDB database working</li>
+	<li>Create user profile page</li>
+	<li>Get access for Dartmouth student netID accounts</li>
+	<li>Navbar tabs: Home, Contact Us, Course Picker, My Profile</li>
+</ul>
