@@ -19,4 +19,5 @@ Recently converted to a Flask application; more to come
 	<li>Create user profile page</li>
 	<li>Get access for Dartmouth student netID accounts</li>
 	<li>Navbar tabs: Home, Contact Us, Course Picker, My Profile</li>
+	<li>Match ranking algorithm</li>
 </ul>

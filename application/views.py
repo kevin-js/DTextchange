@@ -30,4 +30,8 @@ def signup():
 def contact():
 	login_form = forms.LoginForm()
 	contact_form = forms.ContactForm()
-	return render_template('contact.html', title = 'Contact Us', login_form = login_form, contact_form = contact_form, feedback_provided = feedback_provided)
+	messages = {'submitted' : False}
+	if request.method == 'POST':
+		messages = {'submitted': True}
+		print 'got here'
+	return render_template('contact.html', title = 'Contact Us', login_form = login_form, contact_form = contact_form, messages = messages)
