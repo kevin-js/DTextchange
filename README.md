@@ -13,7 +13,7 @@ Recently converted to a Flask application; more to come
 
 <ul>
 	<h1>TODO:</h1>
-	<h1>CSRF validation</h1>
+	<li>CSRF validation</li>
 	<li>Get message script for contact page working</li>
 	<li>Create splash homepage, move register and login there</li>
 	<li>Get MongoDB database working</li>
