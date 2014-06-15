@@ -7,24 +7,53 @@
 			<p>You can either register with your Dartmouth Student ID and B2B password or create your own account here: </p>
 		</div>
 	</div>
-	{% if not registered %}
-	<form name="signup" method="post">
-		<div class="row">
-			<div class="col-sm-3 pull-left" style="margin-bottom: 5px">{{signup_form.first_name(placeholder="First Name")}}</div>
-			<div class="col-sm-3" style="margin-bottom: 5px">{{signup_form.last_name(placeholder="Last Name")}}</div>
-			<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.dartID(placeholder="Dartmouth NetID")}}</div>
-			<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.email(placeholder="Email")}}</div>
-			<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.username(placeholder="Username")}}</div>
-			<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.password(placeholder="Password")}}</div>
-			<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.confirm_password(placeholder="Confirm Password")}}</div>
+	{% if messages['registered_user'] %}
+		<div class="container">
+			<h1>Success!</h1>
+			<p>Thank you for registering!</p>
 		</div>
-		<div class="form-group" style="margin-top: 5px">{{signup_form.submit(class="btn btn-lg btn-success", value="Sign Up")}}</div>
-	</form>
 	{% else %}
-	<div class="container">
-		<h1>Success!</h1>
-		<p>Thank you for registering!</p>
-	</div>
+		<form action="/signup" name="signup" method="post">
+			<div class="row">
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.first_name(placeholder="First Name")}}
+				{% if signup_form.errors['first_name'] %}
+					<div class="error-message">{{signup_form.errors['first_name'][0]}}</div>
+				{% endif %}
+				</div>				
+
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.last_name(placeholder="Last Name")}}
+				{% if signup_form.errors['last_name'] %}
+					<div class="error-message">{{signup_form.errors['last_name'][0]}}</div>
+				{% endif %}
+				</div>
+				
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.dartID(placeholder="Dartmouth NetID")}}</div>
+				{% if signup_form.errors['dartID'] %}
+					<div class="error-message">{{signup_form.errors['dartID'][0]}}</div>
+				{% endif %}
+
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.email(placeholder="Email")}}</div>
+				{% if signup_form.errors['email'] %}
+					<div class="error-message">{{signup_form.errors['email'][0]}}</div>
+				{% endif %}
+				
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.username(placeholder="Username")}}</div>
+				{% if signup_form.errors['username'] %}
+					<div class="error-message">{{signup_form.errors['username'][0]}}</div>
+				{% endif %}
+
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.password(placeholder="Password")}}</div>
+				{% if signup_form.errors['username'] %}
+					<div class="error-message">{{signup_form.errors['username'][0]}}</div>
+				{% endif %}
+
+				<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.confirm_password(placeholder="Confirm Password")}}</div>
+				{% if signup_form.errors['confirm_password'] %}
+					<div class="error-message">{{signup_form.errors['confirm_password'][0]}}</div>
+				{% endif %}
+			</div>
+			<div class="form-group" style="margin-top: 5px">{{signup_form.submit(class="btn btn-lg btn-success", value="Sign Up")}}</div>
+		</form>
 	{% endif %}
 </div>
 {% endblock %}

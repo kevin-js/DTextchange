@@ -18,3 +18,12 @@
 .login-info {
 	font-size: 12px;
 }
+
+.error-message {
+	color: #ff0000;
+}
+
+.footer {
+	background-image: url('../img/footer.jpg');
+	width: 100%;
+}

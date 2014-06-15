@@ -25,11 +25,18 @@
 						<li ng-class="active: navController.isActive(2)"><a href="/contact" ng-click="navController.setActive(2)">Contact Us</a></li>
 						<li ng-class="active: navController.isActive(3)"><a href="http://coursetown.hacktown.cs.dartmouth.edu/" ng-clock="navController.setActive(3)">Course Picker</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><span class="login-info">{{login_form.username(placeholder="username", style="margin-top: 10px")}}</span></li>
-						<li><span class="login-info">{{login_form.password(placeholder="password", style="margin-left: 5px; margin-top: 10px")}}</span></li>
-						<li><span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 15px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span></li>
-					</ul>
+					{% if session['logged_in'] %}
+						<div>
+							<p>Welcome, {{session['user']}}!</p>
+							<a href="/profile"><p>My Profile</p></a>
+						</div>
+					{% else %}
+						<ul class="nav navbar-nav navbar-right">
+							<li><span class="login-info">{{login_form.username(placeholder="username", style="margin-top: 10px")}}</span></li>
+							<li><span class="login-info">{{login_form.password(placeholder="password", style="margin-left: 5px; margin-top: 10px")}}</span></li>
+							<li><span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 15px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span></li>
+						</ul>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -44,6 +51,8 @@
 		<div class="col-xs-3 col-sm-3">
 			{% include 'live_feed.html' %}
 		</div>
+	</div>
+	<div class="footer">
 	</div>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+{% for match in matches %}
+<div class="row">
+	{{match['user']}}
+</div><hr />
+{% endfor %}
+</ul>
+
+{% endblock %}
