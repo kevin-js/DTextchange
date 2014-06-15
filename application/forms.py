@@ -4,8 +4,9 @@ from wtforms.widgets import TextArea
 
 class LoginForm(Form):
 	username = TextField('username', [validators.Required()])
-	password = PasswordField('password')
+	password = PasswordField('password', [validators.Required()])
 	remember_me = BooleanField('remember_me', default = False)
+	submit = SubmitField('Log In')
 
 class ContactForm(Form):
 	name = TextField('name', [validators.Required()])
