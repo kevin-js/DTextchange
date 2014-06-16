@@ -9,7 +9,7 @@ import forms
 def homepage():
 	login_form = forms.LoginForm(request.form)
 	query_engine = forms.QueryEngine(request.form)
-
+	
 	if request.method == 'POST':# login_form.validate():
 		user_info = None
 		for entry in mongo_client.db.users.find({'username' : login_form.username.data}):
@@ -38,7 +38,7 @@ def signup():
 	messages = {'registered_user' : False}
 
 	# TODO: CSRF validation
-	if request.method == 'POST':# and signup_form.validate():
+	if request.method == 'POST' and signup_form.validate():
 		counter = 0
 		for query_result in mongo_client.db.users.find({'username' : signup_form.username.data}):
 			counter += 1

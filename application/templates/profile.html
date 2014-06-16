@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<script type="text/javascript" src="{{ url_for('static', filename='js/profile.js') }}"></script>
+<div ng-app="profile" ng-controller="profileController">
+</div>
 {% endblock %}

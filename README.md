@@ -16,10 +16,7 @@ Recently converted to a Flask application; more to come
 	<li>CSRF validation</li>
 	<li>Get message script for contact page working</li>
 	<li>Create splash homepage, move register and login there</li>
-	<li>Get MongoDB database working</li>
 	<li>Create user profile page</li>
 	<li>Get access for Dartmouth student netID accounts</li>
-	<li>Navbar tabs: Home, Contact Us, Course Picker, My Profile</li>
 	<li>Match ranking algorithm</li>
-	<li>Login sessions</li>
 </ul>

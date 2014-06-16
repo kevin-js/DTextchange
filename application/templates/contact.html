@@ -9,29 +9,29 @@
 			<h3>Thank you for your feedback!</h3>
 			{% else %}
 			<form action="/contact" name="contact-form" method="post" ng-submit="contactCtrl.sendBlitz()">
-				<div class="row-fluid">
+				<div class="row">
 					<div class="col-sm-8" style="margin-bottom: 5px">
-						<div class="form-control">{{contact_form.name(placeholder="Name")}}</div>
+						<div>{{contact_form.name(placeholder="Name")}}</div>
 						{% if contact_form.errors['name'] %}
 							<div class="error-message">{{contact_form.errors['name'][0]}}</div>
 						{% endif %}
 					</div>
 					<div class="col-sm-8" style="margin-bottom: 5px">
-						<div class="form-control">{{contact_form.subject(placeholder="Subject")}}</div>
+						<div>{{contact_form.subject(placeholder="Subject")}}</div>
 						{% if contact_form.errors['subject'] %}
 							<div class="error-message">{{contact_form.errors['subject'][0]}}</div>
 						{% endif %}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12" style="margin-bottom: 10px">
-						<div class="form-control">{{contact_form.message(placeholder="Message")}}</div>
+					<div class="col-sm-9" style="margin-bottom: 10px">
+						<div>{{contact_form.message(placeholder="Message")}}</div>
 						{% if contact_form.errors['message'] %}
 							<div class="error-message">{{contact_form.errors['message'][0]}}</div>
 						{% endif %}
 					</div>
-					<div class="form-group">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div>
 				</div>
+				<div class="row col-sm-12">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div>
 			</form>
 			{% endif %}
 		</div>

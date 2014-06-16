@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="aesthetics">
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="description" content="textbook exchange" />
@@ -10,13 +10,15 @@
 	{% else %}
 	<title>DTextchange</title>
 	{% endif %}
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="http://bootstrap.hackdartmouth.org/assets/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/design.css') }}" />
 	<link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" />
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
-<body>
+<body ng-app="aesthetics">
 	<div id="header-section">
-		<div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavbarController as navController">
+		<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavbarController as navController">
 			<div class="container nav-collapse">
 				<div class="navbar-inner">	
 					<ul class="nav navbar-nav navbar-left">
@@ -26,16 +28,20 @@
 						<li ng-class="active: navController.isActive(3)"><a href="http://coursetown.hacktown.cs.dartmouth.edu/" ng-clock="navController.setActive(3)">Course Picker</a></li>
 					</ul>
 					{% if session['logged_in'] %}
-						<div class="dropdown">
-							<button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu" data-toggle="dropdown" style="margin-top: 5px">
-								Welcome, {{session['user']}}!
-								<span class="caret"></span>
-							</button>
-								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-									<li role="presentation"><a href="/profile" tabindex="-1" role="menuitem"><p>My Profile</p></a></li>
-									<hr class="divider"/>
-									<li role="presentation"><a href="/logout" tabindex="-1" role="menuitem"><p>Logout</p></a></li>
-								</ul>
+						<div class="nav navbar-nav navbar-right" ng-controller="MenuController as menu">
+							<div class="dropdown">
+								<button class="btn btn-success dropdown-toggle" type="button" style="margin-top: 6px" ng-click="menu.changeMenuState()">
+									Welcome, {{session['user']}}!
+									<span class="caret"></span>
+								</button>
+									<ul class="dropdown-menu" ng-show="menu.menuActive">
+										<li><a href="/profile"><p>My Profile</p></a></li>
+										<hr class="divider"/>
+										<li><a href="/logout"><p>Logout</p></a></li>
+									</ul>
+									<p ng-show="menu.menuActive">active</p>
+							</div>
+							
 						</div>
 					{% else %}
 						<form name="login" action="/index" method="post">
@@ -47,13 +53,13 @@
 									{% endif %}
 								</li>
 								<li>
-									<span class="login-info">{{login_form.password(placeholder="password", style="margin-left: 5px; margin-top: 10px")}}</span>
+									<span class="login-info">{{login_form.password(placeholder="password", style="margin-left: 10px; margin-top: 10px")}}</span>
 									{% if login_form.errors['password'] %}
 										<div class="error-message">{{login_form.errors['password'][0]}}</div>
 									{% endif %}
 								</li>
 								<li>
-									<span class="login-info">{{login_form.submit(style="margin-left: 10px; margin-top: 15px", class="btn btn-small btn-success")}}</span>
+									<span class="login-info">{{login_form.submit(style="margin-left: 20px; margin-top: 15px", class="btn btn-small btn-success")}}</span>
 								</li>
 								<li>
 									<span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 15px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span>
@@ -78,8 +84,8 @@
 	</div>
 	<div class="footer">
 	</div>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>
 </body>
 </html>
