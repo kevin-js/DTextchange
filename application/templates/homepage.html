@@ -3,6 +3,8 @@
 <div class="hero-unit">
 	<form action="/results" method="post" class="col-sm-12">{{query_engine.query(placeholder="What are you looking for? e.g. ECON 21 textbook, \'Intermediate Microeconomics\', required readings for Professor X")}}</form>
 </div>
-
+<div class="col-xs-3 col-sm-3">
+	{% include 'live_feed.html' %}
+</div>
 <!-- TODO: manage user preferences: suggest certain textbooks based on prior searches -->
 {% endblock %}

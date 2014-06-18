@@ -9,7 +9,7 @@ import forms
 def homepage():
 	login_form = forms.LoginForm(request.form)
 	query_engine = forms.QueryEngine(request.form)
-	
+
 	if request.method == 'POST':# login_form.validate():
 		user_info = None
 		for entry in mongo_client.db.users.find({'username' : login_form.username.data}):
@@ -75,10 +75,15 @@ def contact():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-
-	return render_template('profile.html')
+	user = {
+				'name': 'Test User',
+				'email': 'test@test.com',
+				'class': '2016',
+				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
+			}
+	return render_template('profile.html', user = user)
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
 	session['logged_in'] = False
-	redirect('index')
+	return redirect('/index')

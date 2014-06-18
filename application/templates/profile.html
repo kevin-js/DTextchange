@@ -2,5 +2,19 @@
 {% block content %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/profile.js') }}"></script>
 <div ng-app="profile" ng-controller="profileController">
+	<div class="container row profile-header">
+		<div class="col-sm-3">
+			<img id="profile-pic" src="{{ user.profile_picture }}" alt="User profile pic" />
+		</div>
+		<div class="col-sm-9">
+			<div class="row"><h1 class="user-info">{{ user.name }}</h1></div>
+			<div class="row"><a href="mailto:{{ user.email }}"><p class="user-info">{{ user.email }}</p></a></div>
+			<div class="row"><p class="user-info">Class of {{ user.class }}</p></div>
+		</div>
+		<hr />
+	</div>
+	<div class="container row textbook-info">
+		<h1>class and textbook information goes here</h1>
+	</div>
 </div>
 {% endblock %}

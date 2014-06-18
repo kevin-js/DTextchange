@@ -15,8 +15,18 @@
 	height: 240px;
 }
 
+#profile-pic {
+	width: 200px;
+	height: 200px;
+}
+
 .login-info {
 	font-size: 12px;
+}
+
+.user-info {
+	margin-top: 0px;
+	padding-top: 0px;
 }
 
 .error-message {

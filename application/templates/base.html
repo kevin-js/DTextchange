@@ -34,12 +34,11 @@
 									Welcome, {{session['user']}}!
 									<span class="caret"></span>
 								</button>
-									<ul class="dropdown-menu" ng-show="menu.menuActive">
+									<ul ng-show="menu.menuActive">
 										<li><a href="/profile"><p>My Profile</p></a></li>
 										<hr class="divider"/>
 										<li><a href="/logout"><p>Logout</p></a></li>
 									</ul>
-									<p ng-show="menu.menuActive">active</p>
 							</div>
 							
 						</div>
@@ -59,7 +58,7 @@
 									{% endif %}
 								</li>
 								<li>
-									<span class="login-info">{{login_form.submit(style="margin-left: 20px; margin-top: 15px", class="btn btn-small btn-success")}}</span>
+									<span class="login-info">{{login_form.submit(style="margin-left: 20px; margin-top: 14px", class="btn btn-small btn-success")}}</span>
 								</li>
 								<li>
 									<span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 15px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span>
@@ -74,12 +73,9 @@
 	</div>
 	<hr class="container"/>
 	<div class="container col-xs-12">
-		<div class="col-xs-9 col-sm-9">
+		<div class="col-xs-12">
 			{% block content %}
 			{% endblock content %}
-		</div>
-		<div class="col-xs-3 col-sm-3">
-			{% include 'live_feed.html' %}
 		</div>
 	</div>
 	<div class="footer">
