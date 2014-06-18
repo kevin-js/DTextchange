@@ -14,13 +14,13 @@
 		<form action="/signup" name="signup" method="post">
 			<div class="col-sm-6">
 				<div class="row">
-					<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.first_name(placeholder="First Name")}}
+					<div class="col-sm-6" style="margin-bottom: 5px; margin-right: 0px">{{signup_form.first_name(placeholder="First Name")}}
 					{% if signup_form.errors['first_name'] %}
 						<div class="error-message">{{signup_form.errors['first_name'][0]}}</div>
 					{% endif %}
 					</div>				
 
-					<div class="col-sm-6" style="margin-bottom: 5px">{{signup_form.last_name(placeholder="Last Name")}}
+					<div class="col-sm-6" style="margin-bottom: 5px; margin-left: 0px">{{signup_form.last_name(placeholder="Last Name")}}
 					{% if signup_form.errors['last_name'] %}
 						<div class="error-message">{{signup_form.errors['last_name'][0]}}</div>
 					{% endif %}

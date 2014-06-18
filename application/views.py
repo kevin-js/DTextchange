@@ -28,7 +28,11 @@ def homepage():
 @app.route('/results', methods=['GET', 'POST'])
 def return_results():
 	login_form = forms.LoginForm(request.form)
-	matches = [{ 'user' : 'user 1'}, {'user' : 'user 2'}, {'user' : 'user 3'}, {'user' : 'user 4'}, {'user' : 'user 5'}, {'user' : 'user 6'}]
+	matches = [{'name': 'Test User',
+				'email': 'test@test.com',
+				'class': '2016',
+				'profile_picture': url_for('static', filename='img/default_prof_pic.png')},
+				]
 	return render_template('results.html', title = 'Search Results', matches = matches, login_form = login_form)
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -79,9 +83,15 @@ def profile():
 				'name': 'Test User',
 				'email': 'test@test.com',
 				'class': '2016',
-				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
+				'profile_picture': url_for('static', filename='img/default_prof_pic.png'),
+				'phone' : '(123) 456-7890',
+				'hinman' : 1234
 			}
 	return render_template('profile.html', user = user)
+
+@app.route('/policies_and_information', methods=['GET', 'POST'])
+def policies():
+	return render_template('policies_and_information.html')
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():

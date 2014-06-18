@@ -29,16 +29,19 @@
 					</ul>
 					{% if session['logged_in'] %}
 						<div class="nav navbar-nav navbar-right" ng-controller="MenuController as menu">
-							<div class="dropdown">
-								<button class="btn btn-success dropdown-toggle" type="button" style="margin-top: 6px" ng-click="menu.changeMenuState()">
+							<div class="btn-group">
+								<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px" data-toggle="dropdown" ng-click="menu.changeMenuState()">
 									Welcome, {{session['user']}}!
 									<span class="caret"></span>
 								</button>
-									<ul ng-show="menu.menuActive">
-										<li><a href="/profile"><p>My Profile</p></a></li>
-										<hr class="divider"/>
+								<div>
+									<ul role="menu" class="dropdown-menu" id="user-menu">
+										<li style="margin-top: 10px"><a href="/profile"><p>My Profile</p></a></li>
+										<hr class="divider" style="margin-top: 10px; margin-bottom: 10px"/>
+										<li><a href="/policies_and_information">Policies</a></li>
 										<li><a href="/logout"><p>Logout</p></a></li>
 									</ul>
+								</div>
 							</div>
 							
 						</div>
@@ -78,8 +81,7 @@
 			{% endblock content %}
 		</div>
 	</div>
-	<div class="footer">
-	</div>
+	<!--{% include 'footer.html' %}-->
 	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>

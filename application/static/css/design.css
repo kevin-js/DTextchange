@@ -36,4 +36,10 @@
 .footer {
 	background-image: url('../img/footer.jpg');
 	width: 100%;
+	absolute: bottom;
+}
+
+.results-profile-pic {
+	width: 75px;
+	height: 75px;
 }

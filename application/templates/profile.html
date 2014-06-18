@@ -8,13 +8,17 @@
 		</div>
 		<div class="col-sm-9">
 			<div class="row"><h1 class="user-info">{{ user.name }}</h1></div>
-			<div class="row"><a href="mailto:{{ user.email }}"><p class="user-info">{{ user.email }}</p></a></div>
+			<div class="row"><a href="mailto:{{ user.email }}"><p class="user-info">Email: {{ user.email }}</p></a></div>
+			{% if user.phone %}
+				<div class="row"><p class="user-info">Phone: {{ user.phone }}</p></div>
+			{% endif %}
+			<div class="row"><p class="user-info">Hinman Box {{ user.hinman }}</p></div>
 			<div class="row"><p class="user-info">Class of {{ user.class }}</p></div>
 		</div>
 		<hr />
 	</div>
 	<div class="container row textbook-info">
-		<h1>class and textbook information goes here</h1>
+		<h1>class and textbook information goes here; integrate with Gerstein's calendar chooser?</h1>
 	</div>
 </div>
 {% endblock %}
