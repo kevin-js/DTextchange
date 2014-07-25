@@ -4,7 +4,7 @@
 <div ng-app="profile" ng-controller="profileController">
 	<div class="container row profile-header">
 		<div class="col-sm-3">
-			<img id="profile-pic" src="{{ user.profile_picture }}" alt="User profile pic" />
+			<img id="profile-pic" src="{{ user.profile_picture }}" alt="User profile pic" ng-click="profileController.updateProfilePic()	"/>
 		</div>
 		<div class="col-sm-9">
 			<div class="row"><h1 class="user-info">{{ user.name }}</h1></div>

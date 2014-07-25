@@ -34,6 +34,9 @@
 				<div class="row col-sm-12">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div>
 			</form>
 			{% endif %}
+			{% for error in contact_form.errors %}
+			<div>{{error}}</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>

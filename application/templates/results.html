@@ -5,7 +5,7 @@
 {% for match in matches %}
 <div class="row">
 	<div class="profile-pic col-sm-1"><img class="results-profile-pic" src="{{ match.profile_picture }}" alt="User profile pic" /></div>
-	{{match.name}}
+	<a href="#">{{match.name}}</a>
 </div><hr />
 {% endfor %}
 </ul>

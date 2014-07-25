@@ -2,6 +2,7 @@ from application import app, mongo_client
 from flask import render_template, redirect, session, g, request, url_for
 import subprocess
 import forms
+import smtplib
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -10,6 +11,7 @@ def homepage():
 	login_form = forms.LoginForm(request.form)
 	query_engine = forms.QueryEngine(request.form)
 
+	# TODO: CSRF validations
 	if request.method == 'POST':# login_form.validate():
 		user_info = None
 		for entry in mongo_client.db.users.find({'username' : login_form.username.data}):
@@ -72,8 +74,30 @@ def contact():
 	messages = {'submitted' : False}
 
 	# TODO: CSRF validation
-	if request.method == 'POST' and contact_form.validate():
+	if request.method == 'POST':# and contact_form.validate():
 		messages['submitted'] = True
+
+		gmail_user = "dartmouthtextchange@gmail.com"
+		gmail_pwd = "dtextchange"
+		FROM = 'dartmouthtextchange@gmail.com'
+		TO = ['dartmouthtextchange@gmail.com'] #must be a list
+		SUBJECT = contact_form.name.data + ": " + contact_form.subject.data
+		TEXT = contact_form.message.data
+
+	    # Prepare actual message
+		message = """\From: %s\nTo: %s\nSubject: %s\n\n%s
+		""" % (FROM, ", ".join(TO), SUBJECT, TEXT)
+		try:
+			server = smtplib.SMTP("smtp.gmail.com", 587)
+			server.ehlo()
+			server.starttls()
+			server.login(gmail_user, gmail_pwd)
+			server.sendmail(FROM, TO, message)
+			server.close()
+			print 'successfully sent the mail'
+		except:
+			print "failed to send mail"
+
 
 	return render_template('contact.html', title = 'Contact Us', login_form = login_form, contact_form = contact_form, messages = messages)
 

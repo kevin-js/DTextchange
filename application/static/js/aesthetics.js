@@ -1,7 +1,7 @@
 (function() {
-	var aesthetics = angular.module('aesthetics', []);
+	var app = angular.module('app', []);
 
-	aesthetics.controller('NavbarController', function(){
+	app.controller('NavbarController', function(){
 		// tells which tab is currently selected
 		this.currentActive = 0;
 
@@ -15,22 +15,45 @@
 		}
 	});
 
-	aesthetics.controller('MenuController', function(){
+	app.controller('MenuController', function(){
+		// default to false
 		this.menuActive = false;
 
 		// method is called when menu is clicked; depending on state of menu,
 		// will either reveal or hide user menu
 		this.changeMenuState = function(){
 			this.menuActive = !this.menuActive;
-
+			
 			$(document).ready(function(){
-				if(!this.menuActive){
+				if(!this.menuActive)
 					$('#user-menu').show('fast');
-				}else{
-					$('#user-menu').hide('fast');
-				}
+				else
+					$('#user-menu').hide();
 			});
 		}
 	});
+
+	app.controller('profileController', function(){
+		this.updateProfilePic = function(){
+			// ******* TODO *********
+			alert("clicked!");
+		}
+	});
+
+	app.controller('feedController', function(){
+		this.posts = posts;
+		if(window.XMLHttpRequest){
+			xmlhttp = new XMLHttpRequest();
+		}else{
+			xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+		xmlhttp.onreadystatechange = function(){
+			if(xmlhttp.readyState = 4 && xmlhttp.status == 200){
+			
+			}
+		}
+	});
+
+	var posts = {};
 
 })();
