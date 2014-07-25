@@ -78,7 +78,7 @@ def contact():
 		messages['submitted'] = True
 
 		gmail_user = "dartmouthtextchange@gmail.com"
-		gmail_pwd = "dtextchange"
+		gmail_pwd = "obfusticated password which is not really the password (change to real password when in production)"
 		FROM = 'dartmouthtextchange@gmail.com'
 		TO = ['dartmouthtextchange@gmail.com'] #must be a list
 		SUBJECT = contact_form.name.data + ": " + contact_form.subject.data
