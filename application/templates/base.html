@@ -14,6 +14,8 @@
 	<link rel="stylesheet" type="text/css" href="http://bootstrap.hackdartmouth.org/assets/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/design.css') }}" />
 	<link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>
 </head>
 <body ng-app="app">
 	<div id="header-section">
@@ -31,15 +33,16 @@
 					{% if session['logged_in'] %}
 						<div class="nav navbar-nav navbar-right" ng-controller="MenuController as menu">
 							<div class="btn-group">
-								<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px" data-toggle="dropdown" ng-click="menu.changeMenuState()">
+								<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px; width: 160px" ng-click="menu.changeMenuState()">
 									Welcome, {{session['user']}}!
 									<span class="caret"></span>
 								</button>
 								<div>
 									<ul role="menu" class="dropdown-menu" id="user-menu">
 										<li style="margin-top: 10px"><a href="/profile"><p>My Profile</p></a></li>
+										<li><a href="update_info"><p>Update Information</p></a></li>
 										<hr class="divider" style="margin-top: 10px; margin-bottom: 10px"/>
-										<li><a href="/policies_and_information">Policies</a></li>
+										<li><a href="/policies_and_information"><p>Policies</p></a></li>
 										<li><a href="/logout"><p>Logout</p></a></li>
 									</ul>
 								</div>
@@ -82,10 +85,11 @@
 			{% endblock content %}
 		</div>
 	</div>
+	<div class="container col-xs-12">
 	<!--{% include 'footer.html' %}-->
+	</div>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>
 </body>
 </html>

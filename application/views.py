@@ -10,7 +10,7 @@ import smtplib
 def homepage():
 	login_form = forms.LoginForm(request.form)
 	query_engine = forms.QueryEngine(request.form)
-
+	query_engine.query_parameter.choices = [('People', 'People'), ('Book Name', 'Book Name'), ('Course', 'Course')]
 	# TODO: CSRF validations
 	if request.method == 'POST':# login_form.validate():
 		user_info = None
@@ -29,12 +29,24 @@ def homepage():
 
 @app.route('/results', methods=['GET', 'POST'])
 def return_results():
+	query = request.form['query'].split(' ')
 	login_form = forms.LoginForm(request.form)
-	matches = [{'name': 'Test User',
+	matches = [{
+				'name': 'Test User',
 				'email': 'test@test.com',
 				'class': '2016',
-				'profile_picture': url_for('static', filename='img/default_prof_pic.png')},
-				]
+				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
+				},
+				{
+				'name': 'Test 2',
+				'email': 'test2@test.com',
+				'class': '2017',
+				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
+				}]
+
+	for keyword in query:
+		matches += mongo_client.db.users.find({'username' : 'test'})	
+	
 	return render_template('results.html', title = 'Search Results', matches = matches, login_form = login_form)
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -113,6 +125,10 @@ def profile():
 			}
 	return render_template('profile.html', user = user)
 
+@app.route('/update_info', methods=['GET','POST'])
+def update_info():
+	return render_template('/update_info.html')
+	
 @app.route('/policies_and_information', methods=['GET', 'POST'])
 def policies():
 	return render_template('policies_and_information.html')
@@ -121,3 +137,4 @@ def policies():
 def logout():
 	session['logged_in'] = False
 	return redirect('/index')
+

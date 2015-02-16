@@ -6,6 +6,7 @@
 		<div class="col-sm-3">
 			<img id="profile-pic" src="{{ user.profile_picture }}" alt="User profile pic" ng-click="profileController.updateProfilePic()	"/>
 		</div>
+		<span class="col-sm-9">
 		<div class="col-sm-9">
 			<div class="row"><h1 class="user-info">{{ user.name }}</h1></div>
 			<div class="row"><a href="mailto:{{ user.email }}"><p class="user-info">Email: {{ user.email }}</p></a></div>
@@ -15,8 +16,10 @@
 			<div class="row"><p class="user-info">Hinman Box {{ user.hinman }}</p></div>
 			<div class="row"><p class="user-info">Class of {{ user.class }}</p></div>
 		</div>
-		<hr />
+		<div class="col-sm-3"><img src="{{ url_for('static', filename='img/edit-icon.png') }}" alt="edit profile" style="width: 20px; height: 20px" /></div>
+		</span>
 	</div>
+	<hr />
 	<div class="container row textbook-info">
 		<h1>class and textbook information goes here; integrate with Gerstein's calendar chooser?</h1>
 	</div>

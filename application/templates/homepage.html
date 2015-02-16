@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="hero-unit">
-	<form action="/results" method="post" class="col-sm-12">{{query_engine.query(placeholder="What are you looking for? e.g. ECON 21 textbook, \'Intermediate Microeconomics\', required readings for Professor X")}}</form>
+	<form action="/results" method="post" class="col-sm-12">
+		{{query_engine.query(placeholder="What are you looking for?")}}
+		<div class="col-xs-3" style="margin-top: 10px">
+			<span><h4 style="margin-bottom: 0px">Search by :</h4> {{query_engine.query_parameter}}</span>
+		</div>
+	</form>
 </div>
-<div class="col-xs-3 col-sm-3">
+<!--<div class="col-xs-3 col-sm-3">
 	{% include 'live_feed.html' %}
-</div>
+</div>-->
 <!-- TODO: manage user preferences: suggest certain textbooks based on prior searches -->
 {% endblock %}

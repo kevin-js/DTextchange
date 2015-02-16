@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms import TextField, BooleanField, PasswordField, SubmitField, validators
+from wtforms import TextField, BooleanField, PasswordField, SubmitField, SelectField, validators
 from wtforms.widgets import TextArea
 
 class LoginForm(Form):
@@ -26,3 +26,4 @@ class SignupForm(Form):
 
 class QueryEngine(Form):
 	query = TextField('query')
+	query_parameter = SelectField(u'Search by: ', [validators.Required()])

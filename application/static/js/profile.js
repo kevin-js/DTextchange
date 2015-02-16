@@ -1,8 +1,14 @@
-(function(){
-	profile = angular.module('profile', []);
-	profile.controller('profileController', function(){
+$(document).ready(function(){
+
+	$('#profile-pic').hover(function(){
+		$('#profile-pic').addClass('active');
+	}, function(){
+		$('#profile-pic').removeClass('active');
 	});
 
-	var profileInfo = {};
-
-})();
+	$('.profile-header').hover(function(){
+		$('.profile-header').backgroundaddClass('active');
+	}, function(){
+		$('.profile-header').removeClass('active');
+	});
+});
