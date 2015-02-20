@@ -14,7 +14,7 @@ class ContactForm(Form):
 	message = TextField('message', [validators.Required()], widget = TextArea())
 	submit = SubmitField('submission')
 
-class SignupForm(Form):
+class InfoForm(Form):
 	first_name = TextField('first_name', [validators.Required()])
 	last_name = TextField('last_name', [validators.Required()])
 	dartID = TextField('dartID')

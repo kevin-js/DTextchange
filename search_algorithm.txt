@@ -1,8 +1,0 @@
-if search by people:
--activate people ranking algorithm
-
-if search by book name:
--activate book search algorithm
-
-if search by course:
--active course search algorithm

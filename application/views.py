@@ -1,8 +1,7 @@
 from application import app, mongo_client
 from flask import render_template, redirect, session, g, request, url_for
-import subprocess
-import forms
-import smtplib
+from datetime import date
+import subprocess, forms, smtplib, search_ranking
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -30,29 +29,22 @@ def homepage():
 @app.route('/results', methods=['GET', 'POST'])
 def return_results():
 	query = request.form['query'].split(' ')
+	query_method = request.form['query_parameter']
 	login_form = forms.LoginForm(request.form)
-	matches = [{
-				'name': 'Test User',
-				'email': 'test@test.com',
-				'class': '2016',
-				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
-				},
-				{
-				'name': 'Test 2',
-				'email': 'test2@test.com',
-				'class': '2017',
-				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
-				}]
 
-	for keyword in query:
-		matches += mongo_client.db.users.find({'username' : 'test'})	
+	if query_method == 'People':
+		matches = search_ranking.rank_by_name(query)
+	elif query_method == 'Book Name':
+		matches = search_ranking.rank_by_book(query)
+	elif query_method == 'Course':
+		matches = search_ranking.rank_by_course(query)
 	
 	return render_template('results.html', title = 'Search Results', matches = matches, login_form = login_form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
 	login_form = forms.LoginForm(request.form)
-	signup_form = forms.SignupForm(request.form)
+	signup_form = forms.InfoForm(request.form)
 	messages = {'registered_user' : False}
 
 	# TODO: CSRF validation
@@ -65,13 +57,16 @@ def signup():
 			signup_form.errors['username'] = [u'Username already exists; please choose another one']
 		
 		else:
+			signup_date = date.today()
 			new_entry = {	
 				'first_name' : signup_form.first_name.data,
 				'last_name' : signup_form.last_name.data,
 				'username' : signup_form.username.data,
 				'password' : signup_form.password.data,
 				'dartID' : signup_form.dartID.data,
-				'email' : signup_form.email.data
+				'email' : signup_form.email.data,
+				'signup_date' : signup_date,
+				'profile_picture': url_for('static', filename='img/default_prof_pic.png')
 			}
 
 			mongo_client.db.users.insert(new_entry)
@@ -115,19 +110,22 @@ def contact():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-	user = {
-				'name': 'Test User',
-				'email': 'test@test.com',
-				'class': '2016',
-				'profile_picture': url_for('static', filename='img/default_prof_pic.png'),
-				'phone' : '(123) 456-7890',
-				'hinman' : 1234
-			}
-	return render_template('profile.html', user = user)
+	user_results = mongo_client.db.users.find({
+				'first_name' : session['user']
+			})
+	user = None
+	for result in user_results:
+		user = result
+	user['name'] = str(user['first_name']) + " " + str(user['last_name'])
+	if user != None:
+		return render_template('profile.html', user = user)
+	else:
+		return render_template('profile.html')
 
 @app.route('/update_info', methods=['GET','POST'])
 def update_info():
-	return render_template('/update_info.html')
+
+	return render_template('/update_info.html', )
 	
 @app.route('/policies_and_information', methods=['GET', 'POST'])
 def policies():

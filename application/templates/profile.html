@@ -13,8 +13,12 @@
 			{% if user.phone %}
 				<div class="row"><p class="user-info">Phone: {{ user.phone }}</p></div>
 			{% endif %}
+			{% if user.hinman %}
 			<div class="row"><p class="user-info">Hinman Box {{ user.hinman }}</p></div>
+			{% endif %}
+			{% if user.class %}
 			<div class="row"><p class="user-info">Class of {{ user.class }}</p></div>
+			{% endif %}
 		</div>
 		<div class="col-sm-3"><img src="{{ url_for('static', filename='img/edit-icon.png') }}" alt="edit profile" style="width: 20px; height: 20px" /></div>
 		</span>
