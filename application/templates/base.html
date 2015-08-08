@@ -17,30 +17,29 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>
 </head>
-<body ng-app="app">
+<body>
 	<div id="header-section">
-		<div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavbarController as navController">
-			<div class="container nav-collapse">
-				<div class="navbar-inner">	
-					<ul class="nav navbar-nav navbar-left">
-						<li ng-class="active: navController.isActive(0)"><a href="/index" ng-click="navController.setActive(0)">Home</a></li>
+		<div class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-index toolbar" role="navigation">
+			<div class="container-fluid nav-collapse">
+				<div class="navbar-inner row">	
+					<ul class="nav navbar-nav navbar-left col-md-4">
+						<li><a href="/index">Home</a></li>
 						{% if not session['logged_in'] %}
-						<li ng-class="active: navController.isActive(1)"><a href="/signup" ng-click="navController.setActive(1)">Register</a></li>
+						<li><a href="/signup">Register</a></li>
 						{% endif %}
-						<li ng-class="active: navController.isActive(2)"><a href="/contact" ng-click="navController.setActive(2)">Contact Us</a></li>
-						<li ng-class="active: navController.isActive(3)"><a href="http://coursetown.hacktown.cs.dartmouth.edu/" ng-clock="navController.setActive(3)">Course Picker</a></li>
+						<li><a href="/contact">Contact Us</a></li>
+						<li><a href="http://coursetown.hacktown.cs.dartmouth.edu/">Course Picker</a></li>
 					</ul>
 					{% if session['logged_in'] %}
-						<div class="nav navbar-nav navbar-right" ng-controller="MenuController as menu">
+						<div class="nav navbar-nav navbar-right col-md-offset-6 col-md-2">
 							<div class="btn-group">
-								<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px; width: 160px" ng-click="menu.changeMenuState()">
+								<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px; width: 160px">
 									Welcome, {{session['user']}}!
 									<span class="caret"></span>
 								</button>
 								<div>
 									<ul role="menu" class="dropdown-menu" id="user-menu">
 										<li style="margin-top: 10px"><a href="/profile"><p>My Profile</p></a></li>
-										<li><a href="update_info"><p>Update Information</p></a></li>
 										<hr class="divider" style="margin-top: 10px; margin-bottom: 10px"/>
 										<li><a href="/policies_and_information"><p>Policies</p></a></li>
 										<li><a href="/logout"><p>Logout</p></a></li>
@@ -50,7 +49,7 @@
 							
 						</div>
 					{% else %}
-						<form name="login" action="/index" method="post">
+						<form name="login" action="/index" method="post" class="col-md-offset-2 col-md-6">
 							<ul class="nav navbar-nav navbar-right">
 								<li>
 									<span class="login-info">{{login_form.username(placeholder="username", style="margin-top: 10px")}}</span>
@@ -78,18 +77,16 @@
 		</div>
 		<h1><a href="/index" id="titleblock">DTextchange</a></h1>
 	</div>
-	<hr class="container"/>
-	<div class="container col-xs-12">
-		<div class="col-xs-12">
-			{% block content %}
-			{% endblock content %}
+	<div class="main-body container-fluid">
+		{% block content %}
+		{% endblock content %}
+	</div>
+	<footer class="container-fluid">
+		<div>
+			<p id="copyright">&copy; Dartmouth Hacker Club</p>
 		</div>
-	</div>
-	<div class="container">
-	<!--{% include 'footer.html' %}-->
-	</div>
+	</footer>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
 </body>
 </html>

@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="hero-unit">
-	<form action="/results" method="post" class="col-sm-12">
-		{{query_engine.query(placeholder="What are you looking for?")}}
-		<div class="col-xs-3" style="margin-top: 10px">
-			<span><h4 style="margin-bottom: 0px">Search by :</h4> {{query_engine.query_parameter}}</span>
-		</div>
+<div class="row" id="query-page">
+	<form action="/results" method="post" class="col-md-12 search-form">
+		<div class="row search-item"><div class="col-md-12">{{query_engine.query(placeholder="What are you looking for?")}}</div></div>
+		<div class="row search-item"><div class="col-md-12"><h4 style="margin-bottom: 0px"><p style="col-md-4">Search by:</p></h4>{{query_engine.query_parameter()}}</div></div>
 	</form>
 </div>
 <!--<div class="col-xs-3 col-sm-3">

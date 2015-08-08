@@ -2,3 +2,4 @@
 virtualenv_overhead/**
 *.pyc
 .Python
+*/db/data/*

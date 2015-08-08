@@ -121,11 +121,6 @@ def profile():
 		return render_template('profile.html', user = user)
 	else:
 		return render_template('profile.html')
-
-@app.route('/update_info', methods=['GET','POST'])
-def update_info():
-
-	return render_template('/update_info.html', )
 	
 @app.route('/policies_and_information', methods=['GET', 'POST'])
 def policies():

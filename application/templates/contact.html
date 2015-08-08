@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 <script src=" {{ url_for('static', filename='js/contact.js') }}"></script>
-<div class="container">
-	<div class="col-sm-6">
-		<div class="hero-unit" ng-controller="contactController as contactCtrl">
+<div class="container" id="contact">
+	<div class="row">
+		<div class="container hero-unit">
 			<p><h1>Contact Us</h1>Questions? Comments? Leave us a note here. Or alternatively, shoot us a message at: <br /><a href="mailto:dtextchange@gmail.com">dartmouthtextchange@gmail.com</a></p>
 			{% if messages['submitted'] %}
 			<h3>Thank you for your feedback!</h3>
 			{% else %}
-			<form action="/contact" name="contact-form" method="post" ng-submit="contactCtrl.sendBlitz()">
+			<form action="/contact" name="contact-form" method="post">
 				<div class="row">
-					<div class="col-sm-8" style="margin-bottom: 5px">
+					<div class="col-md-8" style="margin-bottom: 5px">
 						<div>{{contact_form.name(placeholder="Name")}}</div>
 						{% if contact_form.errors['name'] %}
 							<div class="error-message">{{contact_form.errors['name'][0]}}</div>
 						{% endif %}
 					</div>
-					<div class="col-sm-8" style="margin-bottom: 5px">
+				</div>
+				<div class="row">
+					<div class="col-md-8" style="margin-bottom: 5px">
 						<div>{{contact_form.subject(placeholder="Subject")}}</div>
 						{% if contact_form.errors['subject'] %}
 							<div class="error-message">{{contact_form.errors['subject'][0]}}</div>
@@ -24,14 +26,15 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-9" style="margin-bottom: 10px">
+					<div class="col-md-9" style="margin-bottom: 10px">
 						<div>{{contact_form.message(placeholder="Message")}}</div>
 						{% if contact_form.errors['message'] %}
 							<div class="error-message">{{contact_form.errors['message'][0]}}</div>
 						{% endif %}
 					</div>
 				</div>
-				<div class="row col-sm-12">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div>
+				<div class="row"><div class="col-md-2">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div></div>
+				<br />
 			</form>
 			{% endif %}
 			{% for error in contact_form.errors %}
