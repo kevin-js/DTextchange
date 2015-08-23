@@ -28,9 +28,8 @@ def homepage():
 
 @app.route('/results', methods=['GET', 'POST'])
 def return_results():
-	query = request.form['query'].split(' ')
-	query_method = request.form['query_parameter']
 	login_form = forms.LoginForm(request.form)
+	query = request.form['query'].split(' ')
 
 	if query_method == 'People':
 		matches = search_ranking.rank_by_name(query)

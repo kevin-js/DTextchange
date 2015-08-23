@@ -1,82 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="description" content="textbook exchange" />
-	<meta name="keywords" content="textbook, exchange, Dartmouth" />
-	<meta name="author" content="Kevin Guh, Dartmouth Hackers Club" />
+	<meta charset="utf-8">
+	<meta name="description" content="textbook exchange">
+	<meta name="keywords" content="textbook, exchange, Dartmouth">
+	<meta name="author" content="Kevin Guh, Dartmouth Hackers Club">
 	{% if title %}
 	<title>DTextchange - {{title}}</title>
 	{% else %}
 	<title>DTextchange</title>
 	{% endif %}
-	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="http://bootstrap.hackdartmouth.org/assets/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/design.css') }}" />
-	<link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}" />
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://bootstrap.hackdartmouth.org/assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/design.css') }}">
+	<link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>
+	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="header-section">
-		<div class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-index toolbar" role="navigation">
-			<div class="container-fluid nav-collapse">
-				<div class="navbar-inner row">	
-					<ul class="nav navbar-nav navbar-left col-md-4">
+	<div class="navbar navbar-default navbar-inverse navbar-fixed-top navbar-index toolbar" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-inner">
+			    <div class="navbar-header">
+    				<button style="position: relative; top: 0" type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle" aria-controls="navbar" aria-expanded="false">
+            			<span class="sr-only">Toggle navigation</span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+    				</button>
+				</div>	
+				<div id="navbarCollapse" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-left">
 						<li><a href="/index">Home</a></li>
 						{% if not session['logged_in'] %}
 						<li><a href="/signup">Register</a></li>
 						{% endif %}
 						<li><a href="/contact">Contact Us</a></li>
-						<li><a href="http://coursetown.hacktown.cs.dartmouth.edu/">Course Picker</a></li>
 					</ul>
-					{% if session['logged_in'] %}
-						<div class="nav navbar-nav navbar-right col-md-offset-6 col-md-2">
-							<div class="btn-group">
-								<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px; width: 160px">
-									Welcome, {{session['user']}}!
-									<span class="caret"></span>
-								</button>
-								<div>
-									<ul role="menu" class="dropdown-menu" id="user-menu">
-										<li style="margin-top: 10px"><a href="/profile"><p>My Profile</p></a></li>
-										<hr class="divider" style="margin-top: 10px; margin-bottom: 10px"/>
-										<li><a href="/policies_and_information"><p>Policies</p></a></li>
-										<li><a href="/logout"><p>Logout</p></a></li>
-									</ul>
-								</div>
+				{% if session['logged_in'] %}
+					<div class="nav navbar-right">
+						<div class="btn-group">
+							<button class="btn btn-success dropdown-toggle" id="menu-button" type="button" style="margin-top: 6px; width: 160px">
+								Welcome, {{session['user']}}!
+								<span class="caret"></span>
+							</button>
+							<div>
+								<ul role="menu" class="dropdown-menu" id="user-menu">
+									<li style="margin-top: 10px"><a href="/profile"><p>My Profile</p></a></li>
+									<hr class="divider" style="margin-top: 10px; margin-bottom: 10px"/>
+									<li><a href="/policies_and_information"><p>Policies</p></a></li>
+									<li><a href="/logout"><p>Logout</p></a></li>
+								</ul>
 							</div>
-							
 						</div>
-					{% else %}
-						<form name="login" action="/index" method="post" class="col-md-offset-2 col-md-6">
-							<ul class="nav navbar-nav navbar-right">
+						
+					</div>
+				{% else %}
+					<div class="nav navbar-right">
+						<form name="login" action="/index" method="post" class="">
+							<ul class="navbar-nav" id="login-items">
 								<li>
-									<span class="login-info">{{login_form.username(placeholder="username", style="margin-top: 10px")}}</span>
+									<span class="login-info">{{login_form.username(placeholder="username", style="width: 95%; margin-top: 2px")}}</span>
 									{% if login_form.errors['username'] %}
 										<div class="error-message">{{login_form.errors['username'][0]}}</div>
 									{% endif %}
 								</li>
 								<li>
-									<span class="login-info">{{login_form.password(placeholder="password", style="margin-left: 10px; margin-top: 10px")}}</span>
+									<span class="login-info">{{login_form.password(placeholder="password", style="width: 95%; margin-top: 2px")}}</span>
 									{% if login_form.errors['password'] %}
 										<div class="error-message">{{login_form.errors['password'][0]}}</div>
 									{% endif %}
 								</li>
 								<li>
-									<span class="login-info">{{login_form.submit(style="margin-left: 20px; margin-top: 14px", class="btn btn-small btn-success")}}</span>
+									<span class="login-info">{{login_form.submit(style="margin-top: 5px;", class="btn btn-small btn-success")}}</span>
 								</li>
 								<li>
-									<span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 15px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span>
+									<span class="login-info">{{login_form.remember_me(style="margin-left: 10px; margin-top: 10px")}}<p id="remember-me", style="margin-left: 10px">Remember Me</p></span>
 								</li>
 							</ul>
 						</form>
-					{% endif %}
+					</div>
+				{% endif %}
 				</div>
 			</div>
 		</div>
-		<h1><a href="/index" id="titleblock">DTextchange</a></h1>
 	</div>
+	<div id="header-section" class="text-center"></div>
 	<div class="main-body container-fluid">
 		{% block content %}
 		{% endblock content %}
@@ -86,7 +95,6 @@
 			<p id="copyright">&copy; Dartmouth Hacker Club</p>
 		</div>
 	</footer>
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/aesthetics.js') }}"></script>
 </body>
 </html>

@@ -1,46 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<script src=" {{ url_for('static', filename='js/contact.js') }}"></script>
-<div class="container" id="contact">
-	<div class="row">
-		<div class="container hero-unit">
-			<p><h1>Contact Us</h1>Questions? Comments? Leave us a note here. Or alternatively, shoot us a message at: <br /><a href="mailto:dtextchange@gmail.com">dartmouthtextchange@gmail.com</a></p>
-			{% if messages['submitted'] %}
-			<h3>Thank you for your feedback!</h3>
-			{% else %}
-			<form action="/contact" name="contact-form" method="post">
-				<div class="row">
-					<div class="col-md-8" style="margin-bottom: 5px">
-						<div>{{contact_form.name(placeholder="Name")}}</div>
-						{% if contact_form.errors['name'] %}
-							<div class="error-message">{{contact_form.errors['name'][0]}}</div>
-						{% endif %}
-					</div>
+<div id="contact" class="row">
+	<div class="col-md-12">
+		<p><h1 style="font-size: 4em;">Contact Us</h1>Questions? Comments? Leave us a note here. Or alternatively, shoot us a message at: <br /><a href="mailto:dtextchange@gmail.com">dartmouthtextchange@gmail.com</a></p>
+		{% if messages['submitted'] %}
+		<h3>Thank you for your feedback!</h3>
+		{% else %}
+		<form action="/contact" name="contact-form" method="post">
+			<div class="row">
+				<div class="col-md-3" style="margin-bottom: 5px">
+					<div>{{contact_form.name(placeholder="Name")}}</div>
 				</div>
-				<div class="row">
-					<div class="col-md-8" style="margin-bottom: 5px">
-						<div>{{contact_form.subject(placeholder="Subject")}}</div>
-						{% if contact_form.errors['subject'] %}
-							<div class="error-message">{{contact_form.errors['subject'][0]}}</div>
-						{% endif %}
-					</div>
+				{% if contact_form.errors['name'] %}
+					<div class="row error-message">{{contact_form.errors['name'][0]}}</div>
+				{% endif %}
+			</div>
+			<div class="row">
+				<div class="col-md-3" style="margin-bottom: 5px">
+					<div>{{contact_form.subject(placeholder="Subject")}}</div>
 				</div>
-				<div class="row">
-					<div class="col-md-9" style="margin-bottom: 10px">
-						<div>{{contact_form.message(placeholder="Message")}}</div>
-						{% if contact_form.errors['message'] %}
-							<div class="error-message">{{contact_form.errors['message'][0]}}</div>
-						{% endif %}
-					</div>
+				{% if contact_form.errors['subject'] %}
+					<div class="error-message">{{contact_form.errors['subject'][0]}}</div>
+				{% endif %}
+			</div>
+			<div class="row">
+				<div class="col-md-4" style="margin-bottom: 10px">
+					<div>{{contact_form.message(placeholder="Message", style="min-height: 120px")}}</div>
 				</div>
-				<div class="row"><div class="col-md-2">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div></div>
-				<br />
-			</form>
-			{% endif %}
-			{% for error in contact_form.errors %}
-			<div>{{error}}</div>
-			{% endfor %}
-		</div>
+				{% if contact_form.errors['message'] %}
+					<div class="error-message">{{contact_form.errors['message'][0]}}</div>
+				{% endif %}
+			</div>
+			<div class="row"><div class="col-md-12">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div></div>
+		</form>
+		{% endif %}
+		{% for error in contact_form.errors %}
+		<div>{{error}}</div>
+		{% endfor %}
 	</div>
+	<br />
 </div>
+<script src=" {{ url_for('static', filename='js/contact.js') }}"></script>
 {% endblock %}

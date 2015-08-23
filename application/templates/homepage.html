@@ -2,8 +2,7 @@
 {% block content %}
 <div class="row" id="query-page">
 	<form action="/results" method="post" class="col-md-12 search-form">
-		<div class="row search-item"><div class="col-md-12">{{query_engine.query(placeholder="What are you looking for?")}}</div></div>
-		<div class="row search-item"><div class="col-md-12"><h4 style="margin-bottom: 0px"><p style="col-md-4">Search by:</p></h4>{{query_engine.query_parameter()}}</div></div>
+		<div class="row search-item"><div class="col-xs-offset-1 col-xs-10">{{query_engine.query(placeholder="What are you looking for?")}}</div></div>
 	</form>
 </div>
 <!--<div class="col-xs-3 col-sm-3">

@@ -1,19 +1,38 @@
+html {
+	min-height: 100%;
+}
+
 body { 
     background: url('../img/dartmouth.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
 }
 
 footer {
 	background-color: #222222;
 	color: #999999;	
 	width: 100% !important;
+	bottom: 0;
+	position: relative;
+	overflow: hidden;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 .login-info {
-	font-size: 12px;
+	font-size: 1em;
+}
+
+#login-items {
+	list-style: none;
+	margin-bottom: 0;
 }
 
 .user-info {
@@ -23,12 +42,6 @@ footer {
 
 .error-message {
 	color: #ff0000;
-}
-
-.footer {
-	background-image: url('../img/footer.jpg');
-	width: 100%;
-	absolute: bottom;
 }
 
 .results-profile-pic {
@@ -45,7 +58,7 @@ footer {
 }
 
 .main-body {
-	background-color: rgba(255,255,255,0.8);
+	
 }
 
 .search-form {
@@ -67,23 +80,8 @@ footer {
 	font-size: 10px;
 }
 
-#titleblock {
-	position: absolute;
-	font-size: 3em;
-	color: #ffffff;
-	padding-left: 20px;
-	padding-top: 50px;
-}
-
-#titleblock:hover {
-	text-decoration: none;
-	color: #4cae4d;
-}
-
 #header-section {
-
-	height: 300px;
-
+	height: 50vh;
 }
 
 #profile-pic {
@@ -92,10 +90,15 @@ footer {
 }
 
 #query-page {
-	padding-top: 5%;
 	min-height: 60vh;
+}
+
+#register {
+	min-height: 60vh;
+	background-color: rgba(255,255,255,0.8);
 }
 
 #contact {
 	min-height: 60vh;
+	background-color: rgba(255,255,255,0.8);
 }
