@@ -6,7 +6,11 @@ $(document).ready(function(){
 		$('#profile-pic').removeClass('active');
 	});
 
-	$('.profile-header').hover(function(){
+	$('#profile-pic').click(function(){
+		
+	});
+
+	$('#profile-header').hover(function(){
 		$('.profile-header').backgroundaddClass('active');
 	}, function(){
 		$('.profile-header').removeClass('active');

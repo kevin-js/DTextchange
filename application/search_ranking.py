@@ -9,7 +9,9 @@ def rank_by_name(parameters):
 
 # search ranking algorithm by book name
 def rank_by_book(parameters):
-	book_matches = mongo_client.db.users.find({})
+	book_matches = mongo_client.db.books.find({
+
+		})
 	return None
 
 # search ranking algorithm by course name

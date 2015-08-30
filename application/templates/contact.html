@@ -7,38 +7,40 @@
 		<h3>Thank you for your feedback!</h3>
 		{% else %}
 		<form action="/contact" name="contact-form" method="post">
+			{{contact_form.hidden_tag()}}
+			{{contact_form.csrf_token}}
 			<div class="row">
 				<div class="col-md-3" style="margin-bottom: 5px">
 					<div>{{contact_form.name(placeholder="Name")}}</div>
 				</div>
-				{% if contact_form.errors['name'] %}
-					<div class="row error-message">{{contact_form.errors['name'][0]}}</div>
-				{% endif %}
 			</div>
+			{% if contact_form.errors['name'] %}
+				<div class="row error-message"><div class="col-md-12">{{contact_form.errors['name'][0]}}</div></div>
+			{% endif %}
 			<div class="row">
 				<div class="col-md-3" style="margin-bottom: 5px">
 					<div>{{contact_form.subject(placeholder="Subject")}}</div>
 				</div>
-				{% if contact_form.errors['subject'] %}
-					<div class="error-message">{{contact_form.errors['subject'][0]}}</div>
-				{% endif %}
 			</div>
+			{% if contact_form.errors['subject'] %}
+				<div class="row error-message"><div class="col-md-12">{{contact_form.errors['subject'][0]}}</div></div>
+			{% endif %}
 			<div class="row">
 				<div class="col-md-4" style="margin-bottom: 10px">
 					<div>{{contact_form.message(placeholder="Message", style="min-height: 120px")}}</div>
 				</div>
-				{% if contact_form.errors['message'] %}
-					<div class="error-message">{{contact_form.errors['message'][0]}}</div>
-				{% endif %}
 			</div>
-			<div class="row"><div class="col-md-12">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div></div>
+			{% if contact_form.errors['message'] %}
+				<div class="row error-message"><div class="col-md-12">{{contact_form.errors['message'][0]}}</div></div>
+			{% endif %}
+			<div class="form-group row"><div class="col-md-12">{{contact_form.submit(class="btn btn-lg btn-success",  value="Send Message")}}</div></div>
 		</form>
 		{% endif %}
+		<!-- for debugging purposes -->
 		{% for error in contact_form.errors %}
 		<div>{{error}}</div>
 		{% endfor %}
 	</div>
-	<br />
 </div>
 <script src=" {{ url_for('static', filename='js/contact.js') }}"></script>
 {% endblock %}

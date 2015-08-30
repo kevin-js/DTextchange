@@ -44,6 +44,11 @@ select {
 	color: #ff0000;
 }
 
+#results {
+	min-height: 60vh;
+	background-color: rgba(255,255,255,0.8);
+}
+
 .results-profile-pic {
 	width: 75px;
 	height: 75px;
@@ -76,6 +81,11 @@ select {
 	text-align: center;
 }
 
+#user-profile {
+	min-height: 60vh;
+	background-color: rgba(255,255,255,0.8);
+}
+
 #remember-me {
 	font-size: 10px;
 }
@@ -100,5 +110,9 @@ select {
 
 #contact {
 	min-height: 60vh;
+	background-color: rgba(255,255,255,0.8);
+}
+
+#policies {
 	background-color: rgba(255,255,255,0.8);
 }

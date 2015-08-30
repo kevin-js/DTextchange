@@ -10,8 +10,8 @@ def homepage():
 	login_form = forms.LoginForm(request.form)
 	query_engine = forms.QueryEngine(request.form)
 	query_engine.query_parameter.choices = [('People', 'People'), ('Book Name', 'Book Name'), ('Course', 'Course')]
-	# TODO: CSRF validations
-	if request.method == 'POST':# login_form.validate():
+	
+	if request.method == 'POST' and login_form.validate():
 		user_info = None
 		for entry in mongo_client.db.users.find({'username' : login_form.username.data}):
 			user_info = entry
@@ -26,19 +26,33 @@ def homepage():
 
 	return render_template('homepage.html', login_form = login_form, query_engine = query_engine)
 
+# temporary: search for books only
 @app.route('/results', methods=['GET', 'POST'])
 def return_results():
 	login_form = forms.LoginForm(request.form)
-	query = request.form['query'].split(' ')
+	query = request.form['query']
 
+	# for testing purposes
+	matches = [{
+		'name' : 'test user',
+		'email' : 'test@test.edu'
+	}, {
+		'name' : 'test user2',
+		'email' : 'test@test.edu'
+	}, {
+		'name' : 'test user3',
+		'email' : 'test@test.edu'
+	}]
+	return render_template('results.html', title = 'Search Results', matches = matches, login_form = login_form)
+
+"""
 	if query_method == 'People':
 		matches = search_ranking.rank_by_name(query)
 	elif query_method == 'Book Name':
 		matches = search_ranking.rank_by_book(query)
 	elif query_method == 'Course':
 		matches = search_ranking.rank_by_course(query)
-	
-	return render_template('results.html', title = 'Search Results', matches = matches, login_form = login_form)
+"""	
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -46,7 +60,6 @@ def signup():
 	signup_form = forms.InfoForm(request.form)
 	messages = {'registered_user' : False}
 
-	# TODO: CSRF validation
 	if request.method == 'POST' and signup_form.validate():
 		counter = 0
 		for query_result in mongo_client.db.users.find({'username' : signup_form.username.data}):
@@ -79,12 +92,11 @@ def contact():
 	contact_form = forms.ContactForm(request.form)
 	messages = {'submitted' : False}
 
-	# TODO: CSRF validation
-	if request.method == 'POST':# and contact_form.validate():
+	if request.method == 'POST' and contact_form.validate():
 		messages['submitted'] = True
 
 		gmail_user = "dartmouthtextchange@gmail.com"
-		gmail_pwd = "obfusticated password which is not really the password (change to real password when in production)"
+		gmail_pwd = "dtextchange"
 		FROM = 'dartmouthtextchange@gmail.com'
 		TO = ['dartmouthtextchange@gmail.com'] #must be a list
 		SUBJECT = contact_form.name.data + ": " + contact_form.subject.data
@@ -107,19 +119,24 @@ def contact():
 
 	return render_template('contact.html', title = 'Contact Us', login_form = login_form, contact_form = contact_form, messages = messages)
 
-@app.route('/profile', methods=['GET', 'POST'])
-def profile():
-	user_results = mongo_client.db.users.find({
-				'first_name' : session['user']
-			})
+@app.route('/profile/<userid>', methods=['GET', 'POST'])
+def profile(userid):
+	login_form = forms.LoginForm(request.form)
+	user_results = [{
+	'first_name' : 'test',
+	'last_name' : 'user',
+	'email' : 'test@test.edu'
+		}]
+
+	print userid
 	user = None
 	for result in user_results:
 		user = result
-	user['name'] = str(user['first_name']) + " " + str(user['last_name'])
+		user['name'] = str(user['first_name']) + " " + str(user['last_name'])
 	if user != None:
-		return render_template('profile.html', user = user)
+		return render_template('profile.html', user = user, login_form = login_form)
 	else:
-		return render_template('profile.html')
+		return render_template('profile.html', login_form = login_form)
 	
 @app.route('/policies_and_information', methods=['GET', 'POST'])
 def policies():

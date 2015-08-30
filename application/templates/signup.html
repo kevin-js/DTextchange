@@ -15,6 +15,7 @@
 			</div>
 		{% else %}
 			<form class="row" action="/signup" name="signup" method="post" style="margin-left: -15px">
+				{{signup_form.hidden_tag()}}
 				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-6" style="margin-bottom: 5px; margin-right: 0px">{{signup_form.first_name(placeholder="First Name")}}
@@ -57,6 +58,10 @@
 				</div>
 			</form>
 		{% endif %}
+		<!-- for debugging -->
+		{% for error in signup_form.errors %}
+			<div>{{error}}</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

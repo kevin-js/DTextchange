@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="results">
-{% for match in matches %}
-<div class="row">
-	<div class="profile-pic col-sm-1"><img class="results-profile-pic" src="{{ match.profile_picture }}" alt="User profile pic" /></div>
-	<a href="#">{{match.name}}</a>
-</div>
-<hr />
-{% endfor %}
+<div id="results" class="row">
+	<div class="col-md-12" style="margin-top: 15px">
+		{% for match in matches %}
+		<div class="row">
+			<div class="profile-pic col-sm-1"><img class="results-profile-pic" src="{{ match.profile_picture }}" alt="User profile pic" /></div>
+			<div class="col-sm-11">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#">{{match.name}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr />
+		{% endfor %}
+	</div>
 </div>
 
 {% endblock %}

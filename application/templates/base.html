@@ -58,6 +58,7 @@
 				{% else %}
 					<div class="nav navbar-right">
 						<form name="login" action="/index" method="post" class="">
+							{{login_form.hidden_tag()}}
 							<ul class="navbar-nav" id="login-items">
 								<li>
 									<span class="login-info">{{login_form.username(placeholder="username", style="width: 95%; margin-top: 2px")}}</span>
